@@ -180,3 +180,5 @@ Acesse Actions no GitHub → Veja os logs de execução.
 ✅ Próximos Passos
 
 ✔ Execute testes manuais seguindo /docs/test-cases/. ✔ Automatize fluxos críticos com Cypress. ✔ Monitore desempenho com k6. ✔ Reporte bugs encontrados.
+
+.
