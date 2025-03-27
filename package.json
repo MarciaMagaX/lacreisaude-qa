@@ -1,0 +1,26 @@
+{
+  "name": "projeto-lacrei-qa",
+  "version": "1.0.0",
+  "description": "\"Projeto de testes para a Lacrei Saúde\".\r 📌 Projeto de Testes - LaCreisaúde Paciente",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarciaMagaX/lacreisaude-qa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarciaMagaX/lacreisaude-qa/issues"
+  },
+  "homepage": "https://github.com/MarciaMagaX/lacreisaude-qa#readme",
+  "devDependencies": {
+    "cypress": "^14.2.1"
+  }
+}
