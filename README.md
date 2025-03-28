@@ -1,182 +1,260 @@
 # lacreisaude-qa
-"Projeto de testes para a Lacrei Saúde".
-📌 Projeto de Testes - LaCreisaúde Paciente
-
-🔗 Ambiente de Testes: LaCreisaúde Staging
+🔍 Plano de Testes – LaCrei Saúde (Mobile e Desktop)
 
 📋 Sumário
 
-⚙️ Pré-requisitos
+1️⃣ Configuração do Ambiente
+
+2️⃣ Execução de Testes Manuais
+
+3️⃣ Execução de Testes Automatizados (Cypress + Cucumber)
+
+4️⃣ Testes de Desempenho (k6)
+
+5️⃣ Testes de Acessibilidade (Lighthouse + Axe)
+
+6️⃣ Testes de Responsividade (Mobile e Desktop)
+
+7️⃣ Registro e Gerenciamento de Bugs
+
+8️⃣ Integração Contínua (CI/CD)
+
+9️⃣ Estrutura do Projeto
+
+🔟 Próximos Passos
+
+
+
+1️⃣ Configuração do Ambiente
+
+🛠️ Pré-requisitos
+
+✅ Node.js (v16 ou superior)
+
+✅ Git
+
+✅ Visual Studio Code (ou outra IDE)
+
+✅ Google Chrome ou Firefox
+
+✅ Cypress e Cucumber
+
+✅ k6 (para testes de desempenho)
+
 
 🚀 Configuração Inicial
-
-🔍 Execução de Testes Manuais
-
-🤖 Execução de Testes Automatizados (Cypress)
-
-⚡ Testes de Desempenho (k6)
-
-♿ Testes de Acessibilidade (Lighthouse/Axe)
-
-📱 Testes de Responsividade
-
-🐞 Registro de Bugs
-
-🔄 Integração Contínua (CI/CD)
-
-📂 Estrutura do Projeto
-
-✅ Próximos Passos
-
-⚙️ Pré-requisitos
-
-Antes de começar, instale:
-
-✅ Node.js (v16 ou superior) → Download Node.js
-
-✅ Git → Download Git
-
-✅ Visual Studio Code (ou outra IDE) → Download VSCode
-
-✅ Google Chrome ou Firefox (para testes manuais e automatizados)
-
-✅ Cypress (será instalado via npm)
-
-✅ k6 (para testes de desempenho) → Instalação k6
-
-🚀 Configuração Inicial
-
 Clone o repositório:
 
 git clone https://github.com/seu-usuario/lacreisaude-qa-project.git
 cd lacreisaude-qa-project
-
 Instale as dependências:
 
 npm install
+Crie um arquivo .env com:
 
-Configure as variáveis de ambiente: Crie um arquivo .env na raiz do projeto com:
+BASE_URL=https://paciente-staging.lacreisaude.com.br  
+TEST_EMAIL=teste@exemplo.com  
+TEST_PASSWORD=SenhaSegura@123  
 
-BASE_URL=https://paciente-staging.lacreisaude.com.br
-TEST_EMAIL=teste@exemplo.com
-TEST_PASSWORD=SenhaSegura@123
+2️⃣ Execução de Testes Manuais
 
-🔍 Execução de Testes Manuais
+📄 Casos de Teste (Gherkin) armazenados em /docs/test-cases/.
 
-📄 Casos de Teste em Gherkin: Localizados em /docs/test-cases/ (ex: cadastro.feature).
+📝 Fluxos principais a testar (Mobile)
 
-🎥 Grave a execução: Use OBS Studio ou Loom e salve os vídeos em /recordings/.
+✅ Cadastro da pessoa usuária: Cadastro → Pós Cadastro → Buscar Profissional
 
-🤖 Execução de Testes Automatizados (Cypress)
+✅ Busca de profissional de saúde: Buscar Profissional → Contatar Profissional
 
-Modo interativo:
+✅ Edição de perfil: Atualizar informações e validar mudanças
 
-npx cypress open
+✅ Recuperação de senha: Validar fluxo via e-mail
 
-Selecione o navegador (Chrome/Firefox).
+🎥 Gravação dos Testes
 
-Escolha o teste a ser executado (ex: registration.cy.js).
+📌 Usar OBS Studio ou Loom
 
-Modo headless:
+📂 Armazenar gravações em /recordings/
 
-npx cypress run --browser chrome
+📌 Critérios de Aceite
 
-Gerar relatório HTML (opcional):
+✔ Casos de teste documentados no GitHub
 
-npx cypress run --reporter mochawesome
+✔ Testes funcionais sem interrupções críticas
 
-Relatório salvo em /cypress/reports/.
+✔ Gravações armazenadas
 
-⚡ Testes de Desempenho (k6)
 
-Instale o k6:
+3️⃣ Execução de Testes Automatizados (Cypress + Cucumber)
 
-# Linux/Mac:
-brew install k6
+📍 Rodando testes interativos:
 
-# Windows (Chocolatey):
-choco install k6
+npx cypress open  
+📍 Rodando testes em modo headless:
 
-Execute o teste de carga:
+npx cypress run --browser chrome  
+📍 Executando testes Cucumber:
 
-k6 run docs/performance/search-profissional-test.js
+npx cypress run --spec "cypress/e2e/*.feature"  
+📍 Gerando relatório HTML:
 
-Métricas coletadas:
+npx cypress run --reporter mochawesome  
+📂 Relatório salvo em /cypress/reports/
 
-⏳ Tempo de resposta
+📌 Critérios de Aceite
 
-❌ Taxa de erro
+✔ Testes automatizados documentados
 
-📊 Requisições por segundo
+✔ Testes rodando no pipeline de CI
 
-♿ Testes de Acessibilidade
+✔ Relatórios gerados e arquivados
 
-Via Lighthouse (Chrome DevTools):
 
-Abra o site → Pressione F12 → Acesse Lighthouse → Selecione Accessibility.
+4️⃣ Testes de Desempenho (k6)
 
-Via Axe (Cypress):
+📍 Executar teste de carga:
 
-npx cypress run --spec "cypress/e2e/accessibility.cy.js"
+k6 run docs/performance/search-profissional-test.js 
 
-📱 Testes de Responsividade
+📍 Coletar métricas:
 
-Via Chrome DevTools:
+✅ Tempo de resposta
 
-Ctrl+Shift+M ou F12 → Toggle Device Toolbar.
+✅ Estabilidade sob carga
 
-Via Cypress:
+✅ Requisições por segundo
 
-npx cypress run --spec "cypress/e2e/responsiveness.cy.js"
 
-🐞 Registro de Bugs
+📂 Relatórios documentados e armazenados no GitHub
 
-Modelo de relatoório:
+📌 Critérios de Aceite
 
-**Título**: [BUG] Botão de cadastro não valida email corretamente
+✔ Relatório documentado no README
 
-**Descrição**:  
-Ao inserir um email sem "@", o sistema permite o cadastro.
+✔ Gargalos identificados e relatados
 
-**Passos para reproduzir**:  
-1. Acesse `/cadastro`.
-2. Preencha todos os campos, mas use "emailinvalido".
-3. Clique em "Cadastrar".
 
-**Comportamento esperado**: Erro: "Email inválido".
-**Comportamento atual**: Cadastro é realizado.
-**Severidade**: Alta  
-**Prioridade**: Alta  
-**Plataforma**: Chrome Mobile  
+5️⃣ Testes de Acessibilidade (Lighthouse + Axe)
 
-🔄 Integração Contínua (CI/CD)
+📍 Lighthouse (Chrome DevTools)
 
-✅ GitHub Actions:
+Pressione F12 → Acesse Lighthouse
 
-Arquivo .github/workflows/tests.yml configurado para rodar testes a cada push ou pull request.
+Selecione Accessibility e gere o relatório
 
-📊 Verifique os resultados:
+📍 Axe via Cypress:
 
-Acesse Actions no GitHub → Veja os logs de execução.
+npx cypress run --spec "cypress/e2e/accessibility.cy.js" 
 
-📂 Estrutura do Projeto
+📂 Resultados armazenados no GitHub
 
+📌 Critérios de Aceite
+
+✔ Conformidade com WCAG 2.1
+
+✔ Documentação com insights e melhorias
+
+
+6️⃣ Testes de Responsividade
+
+📍 Chrome DevTools:
+
+Pressione F12 → Ctrl+Shift+M
+
+Teste em resoluções mobile e desktop
+
+📍 Automação com Cypress:
+
+npx cypress run --spec "cypress/e2e/responsiveness.cy.js"  
+
+📂 Relatórios armazenados no GitHub
+
+📌 Critérios de Aceite
+
+✔ Responsividade validada
+
+✔ Relatórios no README
+
+
+7️⃣ Registro e Gerenciamento de Bugs
+
+📍 Modelo de relato:
+
+### [BUG] Erro na validação de e-mail  
+
+**Descrição:**  
+Ao inserir um e-mail sem "@", o cadastro é realizado.  
+
+**Passos para reproduzir:**  
+1. Acesse `/cadastro`  
+2. Insira "emailinvalido"  
+3. Clique em "Cadastrar"  
+
+**Comportamento esperado:**  
+- Mensagem de erro "E-mail inválido"  
+
+**Comportamento atual:**  
+- Cadastro é realizado  
+
+**Severidade:** Alta  
+**Prioridade:** Alta  
+**Evidências:** (Prints e vídeos) 
+
+📂 Bugs armazenados em /bug-reports/
+
+📌 Critérios de Aceite
+
+✔ Relatórios claros e completos
+
+✔ Melhorias propostas
+
+
+8️⃣ Integração Contínua (CI/CD)
+
+📍 Configuração do GitHub Actions
+
+Arquivo .github/workflows/tests.yml executa:
+
+✅ Testes automatizados
+
+✅ Testes de acessibilidade
+
+✅ Testes de desempenho
+
+📂 Logs disponíveis em "Actions" no GitHub
+
+📌 Critérios de Aceite
+
+✔ Testes rodando a cada commit
+
+✔ Relatórios salvos automaticamente
+
+
+9️⃣ Estrutura do Projeto
 **lacreisaude-qa-project/**
 
-├── .github/               # Configurações CI/CD
+├── .github/            # Configuração do CI/CD
 
-├── cypress/               # Testes automatizados
+├── cypress/            # Testes automatizados
 
-├── docs/                  # Casos de teste (Gherkin)
+├── docs/               # Casos de teste (Gherkin)
 
-├── recordings/            # Vídeos de testes manuais
+├── recordings/         # Vídeos dos testes
 
-├── bug-reports/           # Relatórios de bugs
+├── bug-reports/        # Relatórios de bugs
 
-├── .env                   # Variáveis de ambiente
+├── .env                # Variáveis de ambiente
 
-└── README.md              # Este guia
+└── README.md           # Guia completo do projeto
 
-✅ Próximos Passos
+🔟 Próximos Passos
 
-✔ Execute testes manuais seguindo /docs/test-cases/. ✔ Automatize fluxos críticos com Cypress. ✔ Monitore desempenho com k6. ✔ Reporte bugs encontrados.
+✔ Executar casos de teste manuais
+
+✔ Automatizar fluxos críticos com Cypress + Cucumber
+
+✔ Monitorar desempenho e acessibilidade
+
+✔ Documentar melhorias
+
+
